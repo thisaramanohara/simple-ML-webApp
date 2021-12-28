@@ -36,6 +36,9 @@ def add_parameter_ui(clf_name):
     if classifier_name == 'KNN':
         K = st.sidebar.slider('K', 1, 15)
         params['K'] = K
+    elif classifier_name == 'SVM':
+        C = st.sidebar.slider('C', 0.01, 10.0)
+        params['C'] = C
 
 
     return params

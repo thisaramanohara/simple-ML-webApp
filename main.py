@@ -1,5 +1,6 @@
 import streamlit as st
 from sklearn import datasets
+import numpy as np
 
 st.title('Streamlit example')
 
@@ -23,4 +24,20 @@ def get_dataset(dataset_name):
     y = data.target
 
     return x, y
+
+x, y = get_dataset(dataset_name)
+
+st.write('Shape of the dataset', x.shape)
+st.write('Number of classes', len(np.unique(y)))
+
+
+def add_parameter_ui(clf_name):
+    params = dict()
+    if classifier_name == 'KNN':
+        K = st.sidebar.slider('K', 1, 15)
+        params['K'] = K
+
+
+    return params
+
 

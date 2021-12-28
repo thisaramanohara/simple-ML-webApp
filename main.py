@@ -5,7 +5,9 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.decomposition import PCA
 import numpy as np
+import matplotlib.pyplot as plt
 
 st.title('Streamlit example')
 
@@ -77,5 +79,20 @@ acc = accuracy_score(test_target, predicted_target)
 st.write(f'Classifier - {classifier_name}')
 st.write(f'Accuracy = {acc}')
 
+# Plotting
+pca = PCA(2)
+x_projected = pca.fit_transform(x)
+
+x1 = x_projected[:, 0]
+x2 = x_projected[:, 1]
+
+fig = plt.figure()
+plt.scatter(x1, x2, c=y, alpha=0.8, cmap='viridis')
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.colorbar()
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot()
 
 

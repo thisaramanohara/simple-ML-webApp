@@ -3,6 +3,8 @@ from sklearn import datasets
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 import numpy as np
 
 st.title('Streamlit example')
@@ -63,5 +65,17 @@ def get_classifier(clf_name, params):
     return clf
 
 clf = get_classifier(classifier_name, params)
+
+train_data, test_data, train_target, test_target = train_test_split(x, y, test_size=0.2, random_state=1234)
+
+clf.fit(train_data, train_target)
+
+predicted_target = clf.predict(test_data)
+
+acc = accuracy_score(test_target, predicted_target)
+
+st.write(f'Classifier - {classifier_name}')
+st.write(f'Accuracy = {acc}')
+
 
 

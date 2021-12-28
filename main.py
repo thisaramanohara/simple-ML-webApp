@@ -33,10 +33,10 @@ st.write('Number of classes', len(np.unique(y)))
 
 def add_parameter_ui(clf_name):
     params = dict()
-    if classifier_name == 'KNN':
+    if clf_name == 'KNN':
         K = st.sidebar.slider('K', 1, 15)
         params['K'] = K
-    elif classifier_name == 'SVM':
+    elif clf_name == 'SVM':
         C = st.sidebar.slider('C', 0.01, 10.0)
         params['C'] = C
     else:
@@ -46,5 +46,8 @@ def add_parameter_ui(clf_name):
         params['n_estimators'] = n_estimators
 
     return params
+
+params = add_parameter_ui(classifier_name)
+
 
 
